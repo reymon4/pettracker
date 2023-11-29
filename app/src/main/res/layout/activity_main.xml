@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/imgMascotas"
+            android:layout_width="653dp"
+            android:layout_height="807dp"
+            android:layout_marginTop="160dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/mascotas" />
+
+        <Button
+            android:id="@+id/btnLogIn"
+            style="@style/button_theme"
+
+            android:layout_marginBottom="76dp"
+            android:text="@string/log_in"
+
+            app:layout_constraintBottom_toBottomOf="@+id/imgTransparentLogo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/txtNewAccount"
+            style="@style/button_theme"
+
+            android:layout_marginTop="28dp"
+            android:text="@string/create_new_account"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnLogIn" />
+
+        <TextView
+            android:id="@+id/txtIp"
+            android:layout_width="120dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="40dp"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtNewAccount"
+            tools:text="IP:" />
+
+        <ImageView
+            android:id="@+id/imgTransparentLogo"
+            android:layout_width="374dp"
+            android:layout_height="440dp"
+            android:layout_marginBottom="352dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.567"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/pet_tracker_logo_transparent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

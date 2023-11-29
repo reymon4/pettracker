@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="newAccount">#b298dc</color>
+    <color name="one">#B446E3</color>
+
+    <!--Colores "cuadrados"-->
+    <color name="background">#FFC2D6</color>
+    <color name="buttonGreen1"> #C2FFC8</color>
+    <color name="buttonGreen2"> #78AA7D</color>
+    <color name="yellow"> #FFEEC2</color>
+    <color name="blue"> #C2D2FF</color>
+
+</resources>
