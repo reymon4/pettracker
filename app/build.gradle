@@ -3,7 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     //Construccion de Room, debemos declarar en Gradle del project
 
-    //id 'com.google.devtools.ksp'
+    id 'com.google.devtools.ksp'
 }
 
 android {
@@ -61,6 +61,6 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:$room_version"
 
     // To use Kotlin Symbol Processing (KSP)
-    //ksp "androidx.room:room-compiler:$room_version"
+      //ksp "androidx.room:room-compiler:$room_version"
 
 }

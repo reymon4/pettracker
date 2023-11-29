@@ -21,7 +21,8 @@ class MainActivity : AppCompatActivity() {
         //and
         Ipfy.init(this,IpfyClass.UniversalIP) //to get Universal address in IPv
         getIpAdress()
-        returnLogin()
+        login()
+
     }
     private fun getIpAdress(){
         Ipfy.getInstance().getPublicIpObserver().observe(this, { ipData ->
@@ -31,7 +32,9 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    fun returnLogin(){
+
+
+    fun login(){
         binding.btnLogIn.setOnClickListener{
 
             val intent = Intent(this, LoginActivity::class.java)

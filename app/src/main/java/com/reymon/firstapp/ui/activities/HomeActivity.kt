@@ -1,5 +1,6 @@
 package com.reymon.firstapp.ui.activities
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
@@ -16,13 +17,25 @@ class HomeActivity : AppCompatActivity() {
         binding = HomeActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val userId = intent?.extras?.getInt(Constants.USER_ID)
+        intent.extras.let {
+            val userId = it?.getInt(Constants.USER_ID)
+            if(userId != null){
+                val  user = SingIn().getUserName(userId)
+                binding.txtUserName.text = "Bienvenido " + user.firstName.toString() + " " + user.lastName.toString()
+            }
+            else{
+                Snackbar.make(binding.txtUserName,"Ocurrio un error", Snackbar.LENGTH_SHORT).show()
+            }
+        }
+        returnLogin()
+    }
 
-        if (userId != null) {
-            val user = SingIn().getUserName(userId) // Asumiendo que SingIn() es tu clase para obtener datos de usuario
-            binding.txtUserName.text = user.firstName.toString()
-        } else {
-            Snackbar.make(binding.txtUserName, "Ocurrió un error", Snackbar.LENGTH_LONG).show()
+    fun returnLogin(){
+        binding.returnLogin.setOnClickListener{
+
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
         }
     }
+
 }
