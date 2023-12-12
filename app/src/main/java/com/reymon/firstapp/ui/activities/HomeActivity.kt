@@ -37,52 +37,52 @@ class HomeActivity : AppCompatActivity() {
 //                binding.txtUserName.text =
 //                    "Bienvenido " + user.firstName.toString() + " " + user.lastName.toString()
 
-                binding.bottomNavigation.setOnItemSelectedListener { item ->
-                    when (item.itemId) {
-                        R.id.it_home -> {
-                            val transaction = supportFragmentManager.beginTransaction()
-                            transaction.replace(binding.frmContainer.id, listFragment)
-                            transaction.commit()
-                            true
-                        }
-
-                        R.id.it_fav -> {
-                            val transaction = supportFragmentManager.beginTransaction()
-                            transaction.replace(binding.frmContainer.id, favoritesFragment)
-                            transaction.commit()
-                            true
-                        }
-
-                        else -> {
-                            //UNA CORRUTINA DEBE ESTAR DENTRO DE UNA CORRUTINA
-                            //Ciclo de vida de una corrutina enlazada al Main
-                            //Es decir, si la aplicación muere también muere la corrutina
-                            lifecycleScope.launch(Dispatchers.Main) {
-                                //Con este contexto puedo decir que voy a hacer una IO
-                                //CAmbio de main a IO, para saber qué es lo que se debe realizar
-                                //con el withContext ato ambientes
-                                val name = withContext(Dispatchers.IO) {
-                                    val a = "Alexander"
-                                    val b = a + "Beltrán"
-                                    b
-                                }
-                                val s = async {
-                                    val a = ""
-                                }
-                                val s1 = async {
-                                    val a = ""
-                                }
-                                //También puedo enviar una lista a esta función
-                                awaitAll(s,s1)
-                                val name1 = withContext(Dispatchers.IO) {
-                                    getName()
-                                }
-                                binding.txtUserName.text = name.toString()
-                            }
-                            false
-                        }
-                    }
+        binding.bottomNavigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.it_home -> {
+                    val transaction = supportFragmentManager.beginTransaction()
+                    transaction.replace(binding.frmContainer.id, listFragment)
+                    transaction.commit()
+                    true
                 }
+
+                R.id.it_fav -> {
+                    val transaction = supportFragmentManager.beginTransaction()
+                    transaction.replace(binding.frmContainer.id, favoritesFragment)
+                    transaction.commit()
+                    true
+                }
+
+                else -> {
+                    //UNA CORRUTINA DEBE ESTAR DENTRO DE UNA CORRUTINA
+                    //Ciclo de vida de una corrutina enlazada al Main
+                    //Es decir, si la aplicación muere también muere la corrutina
+                    lifecycleScope.launch(Dispatchers.Main) {
+                        //Con este contexto puedo decir que voy a hacer una IO
+                        //CAmbio de main a IO, para saber qué es lo que se debe realizar
+                        //con el withContext ato ambientes
+                        val name = withContext(Dispatchers.IO) {
+                            val a = "Alexander"
+                            val b = a + "Beltrán"
+                            b
+                        }
+                        val s = async {
+                            val a = ""
+                        }
+                        val s1 = async {
+                            val a = ""
+                        }
+                        //También puedo enviar una lista a esta función
+                        awaitAll(s, s1)
+                        val name1 = withContext(Dispatchers.IO) {
+                            getName()
+                        }
+                        binding.txtUserName.text = name.toString()
+                    }
+                    false
+                }
+            }
+        }
 //            } else {
 //                Snackbar.make(binding.txtUserName, "Ocurrio un error", Snackbar.LENGTH_SHORT).show()
 //            }
