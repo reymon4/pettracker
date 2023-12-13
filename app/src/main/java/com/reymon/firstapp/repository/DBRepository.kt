@@ -8,16 +8,18 @@ import com.reymon.firstapp.data.dao.UsersDAO
 import com.reymon.firstapp.data.entities.Users
 
 //Le decimos que sea abstract para que no se pueda instanciar
-@Database(entities = [Users::class],
-    version = 1)
-abstract class DBRepository : RoomDatabase(){
+@Database(
+    entities = [Users::class],
+    version = 1,
+    exportSchema = false
+)
+abstract class DBRepository : RoomDatabase() {
     //Creo funciones para cada DAO que tenga
-    abstract fun getUsersDAO() : UsersDAO
-
-
+    abstract fun getUsersDAO(): UsersDAO
 }
-class DBConnection(){
-    fun getConnection(context: Context) : DBRepository =
+
+class DBConnection() {
+    fun getConnection(context: Context): DBRepository =
         Room.databaseBuilder(
             context,
             DBRepository::class.java,

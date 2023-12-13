@@ -12,15 +12,15 @@ interface UsersDAO {
 
 
     @Query("select * from Users")
-    fun getAllUsers():List<Users>
+     fun getAllUsers():List<Users>
 
     @Query("select * from Users where userId= userId")
-    fun getOneUser(userId: Int): Users
+     fun getOneUser(userId: Int): Users
 
     @Insert
-    fun insertUser(users: List<Users>)
+     fun insertUser(users: List<Users>)
 
     @Update
-    fun updateUsers(users: List<Users>)
+     fun updateUsers(users: List<Users>)
     //Deber delete
 }
