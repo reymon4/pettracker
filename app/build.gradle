@@ -55,15 +55,12 @@ dependencies {
     implementation("com.github.chintan369:Ipify-Android:1.0.1")
 
     implementation('io.github.florent37:shapeofview:1.4.7')
-
-    //
-    def room_version = "2.5.0"
-
-    implementation "androidx.room:room-runtime:$room_version"
-    annotationProcessor "androidx.room:room-compiler:$room_version"
+    implementation("androidx.room:room-runtime:2.5.0")
+    annotationProcessor("androidx.room:room-compiler:2.5.0")
 
     // To use Kotlin Symbol Processing (KSP)
     //ksp "androidx.room:room-compiler:$room_version"
+    ksp("androidx.room:room-compiler:2.5.0")
     //Corrutinas
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
