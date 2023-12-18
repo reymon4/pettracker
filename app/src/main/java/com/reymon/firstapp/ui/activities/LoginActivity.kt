@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import com.reymon.firstapp.R
-import com.reymon.firstapp.logic.usecases.SingIn
+import com.reymon.firstapp.logic.usercases.LoginUserCase
 import com.reymon.firstapp.databinding.ActivityLoginBinding
 import com.reymon.firstapp.ui.core.Application
 import com.reymon.firstapp.ui.core.Constants
@@ -14,7 +14,7 @@ import com.reymon.firstapp.ui.core.Constants
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
-    private val singIn: SingIn = SingIn(Application.getConnectionDB()!!)
+    private val loginUserCase: LoginUserCase = LoginUserCase(Application.getConnectionDB()!!)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,7 +40,7 @@ class LoginActivity : AppCompatActivity() {
 
     fun initControls(){
         binding.btnLoginApp.setOnClickListener {
-            val check = SingIn(Application.getConnectionDB()!!).checkUserandPassword(binding.etUser.text.toString(),
+            val check = LoginUserCase(Application.getConnectionDB()!!).checkUserandPassword(binding.etUser.text.toString(),
                 binding.etPassword.text.toString())
             if(check > 0){
                 val intent = Intent(this, HomeActivity::class.java)

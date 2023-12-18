@@ -2,7 +2,7 @@ package com.reymon.firstapp.ui.core
 
 import com.reymon.firstapp.repository.DBRepository
 import android.app.Application
-import com.reymon.firstapp.logic.usecases.SingIn
+import com.reymon.firstapp.logic.usercases.LoginUserCase
 import com.reymon.firstapp.repository.DBConnection
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -13,10 +13,10 @@ class Application: Application(){
         super.onCreate()
 
         //Ambiente de corrutina, dispatcher (entrada y salida porque vamos a conectar a la DB)
-        //
+        con = DBConnection().getConnection(applicationContext)
         GlobalScope.launch(Dispatchers.IO) {
-            var con = DBConnection().getConnection(applicationContext)
-            SingIn(con).insertUser()
+
+            LoginUserCase(con).insertUser()
 
         }
     }

@@ -15,4 +15,6 @@
     <string name="create_new_account">Create new account</string>
     <string name="log_in">Log In</string>
     <string name="un_gusto_tenerte_de_regreso">¡Un gusto tenerte de regreso!</string>
+    <string name="apellido">Apellido</string>
+    <string name="nombre">Nombre</string>
 </resources>

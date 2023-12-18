@@ -1,10 +1,10 @@
-package com.reymon.firstapp.logic.usecases
+package com.reymon.firstapp.logic.usercases
 
 import com.reymon.firstapp.data.entities.Users
 import com.reymon.firstapp.repository.DBRepository
 import com.reymon.firstapp.repository.UserRepository
 
-class SingIn (val connection: DBRepository){
+class LoginUserCase (val connection: DBRepository){
     //Esta clase únicamente sirve para devolver el valor del usuario (id)
     fun checkUserandPassword(user: String, password: String): Int {
         var ret = -1
@@ -18,15 +18,15 @@ class SingIn (val connection: DBRepository){
         return ret
     }
 
-    fun getUserName(usrId: Int): Users =
+    suspend fun getUserName(usrId: Int): Users =
         connection.getUsersDAO().getOneUser(usrId)
 
-    fun getUserName1(usrId:Int) : Users=
+    suspend fun getUserName1(usrId:Int) : Users=
         UserRepository().getListUsers().first{
             it.userId == usrId
         }
 
-    fun insertUser()=
+    suspend fun insertUser()=
         if(connection.getUsersDAO().getAllUsers().isNotEmpty()){
             connection.getUsersDAO().insertUser(
                 UserRepository().getListUsers()
@@ -34,5 +34,10 @@ class SingIn (val connection: DBRepository){
         }else{
 
         }
+
+    suspend fun getAllUsers(): List<Users> {
+        return connection.getUsersDAO().getAllUsers()
+        //Llamamos al DAo
+    }
 
 }

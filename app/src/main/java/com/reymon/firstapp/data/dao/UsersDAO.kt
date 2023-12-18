@@ -14,7 +14,7 @@ interface UsersDAO {
     @Query("select * from Users")
     fun getAllUsers():List<Users>
 
-    @Query("select * from Users where userId= userId")
+    @Query("select * from Users where userId= :userId")
     fun getOneUser(userId: Int): Users
 
     @Insert
