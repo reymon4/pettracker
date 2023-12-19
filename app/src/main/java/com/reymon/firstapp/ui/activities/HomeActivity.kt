@@ -3,6 +3,7 @@ package com.reymon.firstapp.ui.activities
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,6 +19,7 @@ import com.reymon.firstapp.ui.fragments.ListFragment2
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -39,7 +41,9 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun initRecyclerView() {
-        lifecycleScope.launch {
+        lifecycleScope.launch(Dispatchers.Main) {
+
+            binding.animationView.visibility = View.VISIBLE
             val usrs = withContext(Dispatchers.IO) { getUsersList() }
             val adapter = UsersAdapter(usrs)
             binding.rvUsers.adapter = adapter
@@ -49,10 +53,12 @@ class HomeActivity : AppCompatActivity() {
                     LinearLayoutManager.VERTICAL,
                     false
                 )
+            binding.animationView.visibility = View.GONE
         }
     }
 
     suspend private fun getUsersList(): List<Users> {
+        delay(7000)
         return LoginUserCase(Application.getConnectionDB()!!)
             .getAllUsers()
 

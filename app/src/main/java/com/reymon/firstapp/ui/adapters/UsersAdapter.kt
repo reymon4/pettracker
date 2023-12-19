@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.util.appendPlaceholders
+import coil.load
 import com.reymon.firstapp.R
 import com.reymon.firstapp.data.entities.Users
 import com.reymon.firstapp.databinding.LayoutUsersBinding
@@ -15,9 +17,14 @@ class UsersAdapter (val listUsers:List<Users>): RecyclerView.Adapter<UsersAdapte
         private var binding: LayoutUsersBinding = LayoutUsersBinding.bind(view)
 
         fun render(item : Users){
+            binding.image.load("https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/batman_hero_avatar_comics-512.png"){
+                placeholder(R.drawable.batman_90804)
+                crossfade(enable = true)
+            }
+
             binding.txtID.text = item.userId.toString()
-            binding.txtName.text = item.firstName.toString()
-            binding.textLastName.text = item.lastName.toString()
+            binding.txtName.text = item.firstName.toString() + " "+item.lastName.toString()
+
         }
 
     }
