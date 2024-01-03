@@ -2,18 +2,16 @@ package com.reymon.firstapp.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.reymon.firstapp.R
-import com.reymon.firstapp.data.entities.Users
-import com.reymon.firstapp.logic.usercases.LoginUserCase
+import com.reymon.firstapp.data.local.entities.Users
+import com.reymon.firstapp.logic.usercases.local.LoginUserCase
 import com.reymon.firstapp.databinding.ActivityHomeBinding
 import com.reymon.firstapp.ui.adapters.UsersAdapter
-import com.reymon.firstapp.ui.core.Application
-import com.reymon.firstapp.ui.core.Constants
+import com.reymon.firstapp.core.Application
 import com.reymon.firstapp.ui.fragments.ListFragment1
 import com.reymon.firstapp.ui.fragments.ListFragment2
 import kotlinx.coroutines.Dispatchers

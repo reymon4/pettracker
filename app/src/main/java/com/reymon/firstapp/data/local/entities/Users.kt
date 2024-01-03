@@ -1,4 +1,4 @@
-package com.reymon.firstapp.data.entities
+package com.reymon.firstapp.data.local.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

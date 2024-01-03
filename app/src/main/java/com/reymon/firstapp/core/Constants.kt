@@ -1,4 +1,4 @@
-package com.reymon.firstapp.ui.core
+package com.reymon.firstapp.core
 
 object Constants {
 

@@ -1,11 +1,11 @@
-package com.reymon.firstapp.repository
+package com.reymon.firstapp.data.local.repository
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.reymon.firstapp.data.dao.UsersDAO
-import com.reymon.firstapp.data.entities.Users
+import com.reymon.firstapp.data.local.dao.UsersDAO
+import com.reymon.firstapp.data.local.entities.Users
 
 //Le decimos que sea abstract para que no se pueda instanciar
 @Database(entities = [Users::class],

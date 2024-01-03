@@ -56,7 +56,7 @@ dependencies {
 
 
 
-    // To use Kotlin Symbol Processing (KSP)
+    // KSP (DB)
     ksp 'androidx.room:room-compiler:2.6.1'
     implementation 'androidx.room:room-runtime:2.6.1'
     annotationProcessor 'androidx.room:room-compiler:2.6.1'
@@ -71,6 +71,11 @@ dependencies {
     //Image load implementation
     implementation 'io.coil-kt:coil:2.5.0'
 
-    //Lottie
+    //Lottie (ANIMACIONES)
     implementation 'com.airbnb.android:lottie:6.0.0'
+
+    //RETROFIT (API)
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
 }

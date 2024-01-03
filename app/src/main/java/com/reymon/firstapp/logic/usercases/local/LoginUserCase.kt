@@ -1,8 +1,8 @@
-package com.reymon.firstapp.logic.usercases
+package com.reymon.firstapp.logic.usercases.local
 
-import com.reymon.firstapp.data.entities.Users
-import com.reymon.firstapp.repository.DBRepository
-import com.reymon.firstapp.repository.UserRepository
+import com.reymon.firstapp.data.local.entities.Users
+import com.reymon.firstapp.data.local.repository.DBRepository
+import com.reymon.firstapp.data.local.repository.UserRepository
 
 class LoginUserCase (val connection: DBRepository){
     //Esta clase únicamente sirve para devolver el valor del usuario (id)
@@ -21,7 +21,7 @@ class LoginUserCase (val connection: DBRepository){
     suspend fun getUserName(usrId: Int): Users =
         connection.getUsersDAO().getOneUser(usrId)
 
-    suspend fun getUserName1(usrId:Int) : Users=
+    suspend fun getUserName1(usrId:Int) : Users =
         UserRepository().getListUsers().first{
             it.userId == usrId
         }

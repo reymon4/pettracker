@@ -1,9 +1,9 @@
-package com.reymon.firstapp.ui.core
+package com.reymon.firstapp.core
 
-import com.reymon.firstapp.repository.DBRepository
+import com.reymon.firstapp.data.local.repository.DBRepository
 import android.app.Application
-import com.reymon.firstapp.logic.usercases.LoginUserCase
-import com.reymon.firstapp.repository.DBConnection
+import com.reymon.firstapp.logic.usercases.local.LoginUserCase
+import com.reymon.firstapp.data.local.repository.DBConnection
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -23,7 +23,7 @@ class Application: Application(){
     companion object{
         private lateinit var con: DBRepository
 
-        fun getConnectionDB():DBRepository?{
+        fun getConnectionDB(): DBRepository?{
             return con
         }
     }

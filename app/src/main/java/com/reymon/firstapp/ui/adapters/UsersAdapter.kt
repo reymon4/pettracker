@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.room.util.appendPlaceholders
 import coil.load
 import com.reymon.firstapp.R
-import com.reymon.firstapp.data.entities.Users
+import com.reymon.firstapp.data.local.entities.Users
 import com.reymon.firstapp.databinding.LayoutUsersBinding
 
 class UsersAdapter (val listUsers:List<Users>): RecyclerView.Adapter<UsersAdapter.ViewHolderUsers>() {

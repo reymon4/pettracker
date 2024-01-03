@@ -1,6 +1,6 @@
-package com.reymon.firstapp.repository
+package com.reymon.firstapp.data.local.repository
 
-import com.reymon.firstapp.data.entities.Users
+import com.reymon.firstapp.data.local.entities.Users
 
 
 public class UserRepository {
