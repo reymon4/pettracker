@@ -2,6 +2,7 @@ package com.reymon.firstapp.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -12,6 +13,8 @@ import com.reymon.firstapp.logic.usercases.local.LoginUserCase
 import com.reymon.firstapp.databinding.ActivityHomeBinding
 import com.reymon.firstapp.ui.adapters.UsersAdapter
 import com.reymon.firstapp.core.Application
+import com.reymon.firstapp.core.Constants
+import com.reymon.firstapp.logic.usercases.jikan.JikanGetTopAnimesUserCase
 import com.reymon.firstapp.ui.fragments.ListFragment1
 import com.reymon.firstapp.ui.fragments.ListFragment2
 import kotlinx.coroutines.Dispatchers
@@ -34,8 +37,15 @@ class HomeActivity : AppCompatActivity() {
         checkDB()
         initRecyclerView()
         returnLogin()
+        getAllTopAnimes()
 
 
+    }
+    private fun getAllTopAnimes(){
+        lifecycleScope.launch (Dispatchers.IO) {
+            val x =JikanGetTopAnimesUserCase().getResponse()
+            Log.d(Constants.TAG, x.data[0].toString())
+        }
     }
 
     private fun initRecyclerView() {
@@ -43,6 +53,7 @@ class HomeActivity : AppCompatActivity() {
 
             binding.animationView.visibility = View.VISIBLE
             val usrs = withContext(Dispatchers.IO) { getUsersList() }
+            Log.d("MyApp","usuarios:${usrs.size}")
             val adapter = UsersAdapter(usrs)
             binding.rvUsers.adapter = adapter
             binding.rvUsers.layoutManager =

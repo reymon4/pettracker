@@ -1,4 +1,4 @@
-package com.reymon.firstapp.data.network.endpoints
+package com.reymon.firstapp.data.network.repository
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
