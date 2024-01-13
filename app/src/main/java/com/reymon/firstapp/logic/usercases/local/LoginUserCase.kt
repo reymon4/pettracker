@@ -27,7 +27,7 @@ class LoginUserCase (val connection: DBRepository){
         }
 
     suspend fun insertUser()=
-        if(connection.getUsersDAO().getAllUsers().isNotEmpty()){
+        if(connection.getUsersDAO().getAllUsers().isEmpty()){
             connection.getUsersDAO().insertUser(
                 UserRepository().getListUsers()
             )
@@ -35,9 +35,9 @@ class LoginUserCase (val connection: DBRepository){
 
         }
 
-    suspend fun getAllUsers(): List<Users> {
-        return connection.getUsersDAO().getAllUsers()
+    suspend fun getAllUsers(): List<Users> =
+        connection.getUsersDAO().getAllUsers()
         //Llamamos al DAo
-    }
+
 
 }
