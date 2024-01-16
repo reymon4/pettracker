@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import androidx.room.util.appendPlaceholders
 import coil.load
 import com.reymon.firstapp.R
 import com.reymon.firstapp.data.local.entities.Users

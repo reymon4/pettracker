@@ -7,6 +7,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.reymon.firstapp.R
 import com.reymon.firstapp.data.local.entities.Users
 import com.reymon.firstapp.logic.usercases.local.LoginUserCase
@@ -15,6 +16,7 @@ import com.reymon.firstapp.ui.adapters.UsersAdapter
 import com.reymon.firstapp.core.Application
 import com.reymon.firstapp.core.Constants
 import com.reymon.firstapp.logic.usercases.jikan.JikanGetTopAnimesUserCase
+import com.reymon.firstapp.ui.adapters.TopAnimesAdapter
 import com.reymon.firstapp.ui.fragments.ListFragment1
 import com.reymon.firstapp.ui.fragments.ListFragment2
 import kotlinx.coroutines.Dispatchers
@@ -35,41 +37,64 @@ class HomeActivity : AppCompatActivity() {
 
         initListeners()
         checkDB()
-        initRecyclerView()
+        //initRecyclerView()
         returnLogin()
         getAllTopAnimes()
+        initRecyclerView1()
 
 
     }
-    private fun getAllTopAnimes(){
-        lifecycleScope.launch (Dispatchers.IO) {
-            val x =JikanGetTopAnimesUserCase().getResponse()
-            Log.d(Constants.TAG, x.data[0].toString())
+
+    private fun getAllTopAnimes() {
+//        lifecycleScope.launch (Dispatchers.IO) {
+//            val x =JikanGetTopAnimesUserCase().getResponse()
+//            Log.d(Constants.TAG, x.data[0].toString())
+        binding.animationView.visibility = View.VISIBLE
+
+    }
+
+    private fun initRecyclerView1() {
+        lifecycleScope.launch(Dispatchers.Main) {
+
+            binding.animationView.visibility = View.VISIBLE
+            val jikan = JikanGetTopAnimesUserCase()
+            val animes = withContext(Dispatchers.IO) { jikan.getResponse() }
+
+            animes.onSuccess { animes ->
+                val adapter = TopAnimesAdapter(animes.data)
+                binding.rvUsers.adapter = adapter
+                binding.rvUsers.layoutManager = LinearLayoutManager(
+                    this@HomeActivity, LinearLayoutManager.VERTICAL, false
+                )
+
+            }
+            animes.onFailure {
+                //Entonces, aquí decidimos cómo manejar los errores en la UI
+            }
+            binding.animationView.visibility = View.GONE
+
         }
     }
+
 
     private fun initRecyclerView() {
         lifecycleScope.launch(Dispatchers.Main) {
 
             binding.animationView.visibility = View.VISIBLE
             val usrs = withContext(Dispatchers.IO) { getUsersList() }
-            Log.d("MyApp","usuarios:${usrs.size}")
+            Log.d("MyApp", "usuarios:${usrs.size}")
             val adapter = UsersAdapter(usrs)
             binding.rvUsers.adapter = adapter
-            binding.rvUsers.layoutManager =
-                LinearLayoutManager(
-                    this@HomeActivity,
-                    LinearLayoutManager.VERTICAL,
-                    false
-                )
+            binding.rvUsers.layoutManager = LinearLayoutManager(
+                this@HomeActivity, LinearLayoutManager.VERTICAL, false
+            )
             binding.animationView.visibility = View.GONE
         }
     }
 
     suspend private fun getUsersList(): List<Users> {
         delay(7000)
-        return LoginUserCase(Application.getConnectionDB()!!)
-            .getAllUsers()
+        return LoginUserCase(Application.getConnectionDB()!!).getAllUsers()
 
     }
 
@@ -87,6 +112,7 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
+    val s={x: Int, y:Int -> x+y}
 
     private fun initListeners() {
 //        intent.extras.let {
@@ -96,6 +122,16 @@ class HomeActivity : AppCompatActivity() {
 //
 //                binding.txtUserName.text =
 //                    "Bienvenido " + user.firstName.toString() + " " + user.lastName.toString()
+
+        binding.swipeRv.setOnRefreshListener {
+            val adapter = TopAnimesAdapter(listOf())
+            binding.rvUsers.adapter = adapter
+            binding.rvUsers.layoutManager = LinearLayoutManager(
+                this@HomeActivity, LinearLayoutManager.VERTICAL, false
+            )
+            initRecyclerView1()
+            binding.swipeRv.isRefreshing = false
+        }
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.it_home -> {
